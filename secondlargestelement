@@ -1,0 +1,72 @@
+# 🏆 Find Second Largest Element in an Array (C++)
+
+This repository contains an efficient solution to find the **second largest element** in a given array without sorting it.  
+
+The solution works in **O(n) time complexity** and does **not modify the original array**.
+
+---
+
+## 📌 Problem Statement
+
+Given an array `arr[]`, return the **second largest distinct element**.  
+If no such element exists (e.g., all elements are equal), return **-1**.
+
+### Example:
+
+| Input | Output |
+|--------|--------|
+| `[12, 35, 1, 10, 34, 1]` | `34` |
+| `[10, 10]` | `-1` |
+| `[5, 4, 3, 2, 1]` | `4` |
+
+---
+
+## 🚀 Approach
+
+We maintain two variables:
+
+- `largest` → Tracks the biggest value found so far  
+- `secondLargest` → Tracks the second biggest distinct value
+
+We **scan the array only once** and update these values based on comparisons:
+
+1. If current value > `largest` → update both `largest` and `secondLargest`
+2. Else if value is between `secondLargest` and `largest` → update `secondLargest`
+
+---
+
+## 🧠 Time & Space Complexity
+
+| Factor | Value |
+|--------|-------|
+| **Time Complexity** | `O(n)` |
+| **Space Complexity** | `O(1)` |
+| **Stable Solution** | ✔ Yes |
+| **Handles Duplicates** | ✔ Yes |
+
+---
+
+## 📌 C++ Code Implementation
+
+```cpp
+class Solution {
+public:
+    int getSecondLargest(vector<int> &arr) {
+        int largest = -1, secondlargest = -1;
+
+        for(int i = 0; i < arr.size(); i++) {
+
+            // If new element is greater than the current largest
+            if(arr[i] > largest) {
+                secondlargest = largest;
+                largest = arr[i];
+            }
+            // If element is smaller than largest but greater than second largest
+            else if(arr[i] > secondlargest && arr[i] != largest) {
+                secondlargest = arr[i];
+            }
+        }
+
+        return secondlargest;
+    }
+};
