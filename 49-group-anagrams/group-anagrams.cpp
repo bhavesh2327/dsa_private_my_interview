@@ -5,7 +5,7 @@ public:
 
         for (int i = 0; i < strs.size(); i++) {
             string temp = strs[i];
-            sort(temp.begin(), temp.end());   // sorted key
+            sort(temp.begin(), temp.end());  
             mp[temp].push_back(strs[i]);
         }
 
